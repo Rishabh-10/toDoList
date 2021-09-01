@@ -1,0 +1,43 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach((listItem) => { %>
+      <form action="/delete" method="POST">
+        <div class="item">
+          <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= listItem._id %>" required>
+          <p><%=  listItem.name  %></p>
+        </div>
+        <input type="hidden" name="listName" value="<%= listTitle %>">
+      </form>
+      <% }) %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus required>
+        <!-- submit button submits all data -->
+        <button class="add" type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+  <div class="listBox">
+    <form class="lists" action="/list" method="POST">
+      <!-- the select and option is a form element together -->
+      <select name="chooseList" id="">
+        <option value="">Select your option</option>
+        <% customLists.forEach((listName) => { %>
+          <option value="<%= listName.name %>"><%= listName.name %></option>
+        <% }) %>
+      </select>
+      <!-- <input type="text" placeholder="List Name" autocomplete="off"> -->
+      <button class="add addLists" type="submit">Open List</button>
+    </form>
+    <form class="lists" action="/list" method="POST">
+      <input type="text" name="chooseList" placeholder="New List Name" autocomplete="off" required>
+      <button class="add addLists" type="submit">Add List</button>
+    </form>
+  </div>
+
+<%- include("footer") -%>
