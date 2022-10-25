@@ -22,7 +22,11 @@ app.use(express.static(__dirname + '/public'));
 
 // : / ? # [ ] @ these characters must be changed to "percent encoding" other wise ther would be a lot of warnings 
 // use the website "uri encoder"
-mongoose.connect("mongodb+srv://Kaizoku:123%21%40%23qweQWE@todolist.rti3a.mongodb.net/todolistDB", { useNewUrlParser: true });
+
+// the below code is depreciated
+// mongoose.connect("mongodb+srv://Kaizoku:123%21%40%23qweQWE@todolist.rti3a.mongodb.net/todolistDB", { useNewUrlParser: true });
+
+mongoose.connect("mongodb+srv://Kaizoku:123%21%40%23qweQWE@todolist.rti3a.mongodb.net/todolistDB");
 
 const itemsSchema = {
   name: String
